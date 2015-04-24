@@ -1,14 +1,16 @@
 {
   "name": "cla6-base",
   "description": "Base plugin for Cla6.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/base.js",
   "repository": {
     "type": "git",
     "url": "https://DAB0mB@github.com/DAB0mB/cla6-base.git"
   },
   "browserify": {
-      "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "cla6": "global:Cla6"
