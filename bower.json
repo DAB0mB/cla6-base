@@ -1,7 +1,7 @@
 {
   "name": "cla6-base",
   "description": "Base plugin for Cla6.js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "client/cla6-base.js",
   "repository": {
     "type": "git",
