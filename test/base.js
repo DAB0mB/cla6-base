@@ -8,34 +8,34 @@ describe('Cla6', function() {
   describe('base', function() {
     describe('overriding', function() {
       it('should ignore rewriting', function() {
-        global.base = 'rewritten';
-        expect(base).to.not.equal('rewritten');
+        Cla6.base = 'rewritten';
+        expect(Cla6.base).to.not.equal('rewritten');
       });
 
       it('should throw an error when trying to reconfigure', function() {
         var reconfigure = function() {
-          Object.defineProperty(global, 'base', {value: 'reconfigured'});
+          Object.defineProperty(Cla6, 'base', {value: 'reconfigured'});
         };
 
         expect(reconfigure).to.throw(Error);
       });
 
       it('should ignore deleting', function() {
-        delete global.base;
-        var descriptor = Object.getOwnPropertyDescriptor(global, 'base');
+        delete Cla6.base;
+        var descriptor = Object.getOwnPropertyDescriptor(Cla6, 'base');
         expect(descriptor).to.be.exist;
       });
     });
 
     describe('scoping', function() {
       it('should not exist by default', function() {
-        expect(base).to.be.not.exist;
+        expect(Cla6.base).to.be.not.exist;
       });
 
       it('should exist in methods', function() {
         var Parent = Cla6('Parent', {
           constructor: function() {
-            expect(base).to.be.exist;
+            expect(Cla6.base).to.be.exist;
           },
 
           method: function() {
@@ -44,21 +44,21 @@ describe('Cla6', function() {
 
         var Child = Cla6('Child').extend(Parent, {
           method: function() {
-            expect(base).to.be.exist;
+            expect(Cla6.base).to.be.exist;
           }
         });
 
         var obj = new Child();
-        expect(base).to.be.not.exist;
+        expect(Cla6.base).to.be.not.exist;
 
         obj.method();
-        expect(base).to.be.not.exist;
+        expect(Cla6.base).to.be.not.exist;
       });
 
       it('should not exist if no super method defined', function() {
         var Klass = Cla6('Klass', {
           method: function() {
-            expect(base).to.be.not.exist;
+            expect(Cla6.base).to.be.not.exist;
           }
         });
 
@@ -70,7 +70,7 @@ describe('Cla6', function() {
         var Klass = Cla6('Klass', {
           constructor: function() {
             (function() {
-              expect(base).to.not.exist;
+              expect(Cla6.base).to.not.exist;
             })();
           }
         });
@@ -108,11 +108,11 @@ describe('Cla6', function() {
 
       var Child = Cla6('Child').extend(Parent, {
         constructor: function() {
-          base('constructor');
+          Cla6.base('constructor');
         },
 
         method: function() {
-          base('method');
+          Cla6.base('method');
         }
       });
 
@@ -129,7 +129,7 @@ describe('Cla6', function() {
 
       var Child = Cla6('Child').extend(Parent, {
         constructor: function() {
-          expect(base()).to.equal(this);
+          expect(Cla6.base()).to.equal(this);
         }
       });
 
