@@ -3,23 +3,22 @@ var Cla6Base = require('..');
 
 Cla6.use(Cla6Base);
 },{"..":2}],2:[function(require,module,exports){
-(function (global){
-var Cla6 = (typeof window !== "undefined" ? window.Cla6 : typeof global !== "undefined" ? global.Cla6 : null);
-
 var caller;
 var base;
 
-Object.defineProperty(Cla6, 'base', {
-  configurable: true,
-  enumerable: true,
+var initialize = function(Cla6) {
+  Object.defineProperty(Cla6, 'base', {
+    configurable: true,
+    enumerable: true,
 
-  get: function() {
-    if (arguments.callee.caller == caller)
-      return base;
-  }
-});
+    get: function() {
+      if (arguments.callee.caller == caller)
+        return base;
+    }
+  });
+};
 
-function Base(descriptors, Parent) {
+var manipulate = function(descriptors, Parent) {
   Object.keys(descriptors).filter(function(k) {
     return typeof descriptors[k].value == 'function';
   })
@@ -28,7 +27,7 @@ function Base(descriptors, Parent) {
     var superMethod = Parent.prototype[k];
     descriptor.value = wrapMethod(descriptor.value, superMethod); 
   });
-}
+};
 
 var wrapMethod = function(method, superMethod) {
   return function() {
@@ -61,6 +60,8 @@ var defineBase = function(obj, method, superMethod) {
   };
 };
 
-module.exports = Base;
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+module.exports = {
+  initialize: initialize,
+  manipulate: manipulate
+};
 },{}]},{},[1]);
