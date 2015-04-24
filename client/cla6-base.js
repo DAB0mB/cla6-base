@@ -3,7 +3,8 @@ var Cla6Base = require('..');
 
 Cla6.use(Cla6Base);
 },{"..":2}],2:[function(require,module,exports){
-var Cla6 = require('cla6');
+(function (global){
+var Cla6 = (typeof window !== "undefined" ? window.Cla6 : typeof global !== "undefined" ? global.Cla6 : null);
 
 var caller;
 var base;
@@ -60,6 +61,5 @@ var defineBase = function(obj, method, superMethod) {
 };
 
 module.exports = Base;
-},{"cla6":3}],3:[function(require,module,exports){
-
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}]},{},[1]);

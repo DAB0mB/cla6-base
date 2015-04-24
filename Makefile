@@ -1,5 +1,5 @@
 browserify:
-	browserify --ignore cla6 client > client/cla6-base.js
+	browserify client > client/cla6-base.js
 	uglifyjs client/cla6-base.js > client/cla6-base.min.js
 
 test:
