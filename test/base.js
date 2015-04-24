@@ -6,27 +6,6 @@ var spy = Chai.spy;
 
 describe('Cla6', function() {
   describe('base', function() {
-    describe('overriding', function() {
-      it('should ignore rewriting', function() {
-        Cla6.base = 'rewritten';
-        expect(Cla6.base).to.not.equal('rewritten');
-      });
-
-      it('should throw an error when trying to reconfigure', function() {
-        var reconfigure = function() {
-          Object.defineProperty(Cla6, 'base', {value: 'reconfigured'});
-        };
-
-        expect(reconfigure).to.throw(Error);
-      });
-
-      it('should ignore deleting', function() {
-        delete Cla6.base;
-        var descriptor = Object.getOwnPropertyDescriptor(Cla6, 'base');
-        expect(descriptor).to.be.exist;
-      });
-    });
-
     describe('scoping', function() {
       it('should not exist by default', function() {
         expect(Cla6.base).to.be.not.exist;

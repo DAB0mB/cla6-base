@@ -10,6 +10,7 @@ var caller;
 var base;
 
 Object.defineProperty(Cla6, 'base', {
+  configurable: true,
   enumerable: true,
 
   get: function() {
